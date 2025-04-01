@@ -1,0 +1,23 @@
+version: '3.9' # Use the latest version of Docker Compose file format
+services: 
+  app:
+    image: retroz-flask-test
+    depends_on:
+      - redis 
+    ports:
+      - '5000:5000'
+    networks:
+      - flask-app-network
+    environment:
+      - name=World !
+  
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+    networks:
+      - flask-app-network
+
+networks:
+  flask-app-network:
+
